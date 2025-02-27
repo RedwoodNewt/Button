@@ -4,68 +4,130 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1 INPUT 1 OUTPUT TEMPLATE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jacquard+12&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    
     <style>
+        body {
+            background-color: rgb(73, 119, 117);
+            margin: 0;
+            padding: 0;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* STYLE FOR THE PLACEHOLDER TEXT */
+        #charInput::placeholder {
+            color: rgb(30, 53, 59);  
+            font-size: 24px; 
+            font-family: "Jacquard 12", system-ui;     
+            text-transform: lowercase; 
+        }
 
         /* STYLE FOR THE INPUT FIELD */
         #charInput {
-
+            width: 485px;
+            height: 40px;
+            font-size: 34px;
+            font-family: "Jacquard 12", system-ui;
+            text-transform: uppercase;
+            text-align: center;
+            color: rgb(115, 32, 32);
+            border: none;
+            border-radius: 4px;
+            background-color: rgb(242, 242, 242);
+            margin: 0;
+            position: absolute;
+            top: 2%;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         /* STYLE FOR THE SUBMIT BUTTON */
         #submitButton {
+            color: rgb(30, 53, 59);
+            background-color: rgb(242, 242, 242);
+            border: none;
+            font-size: 48px;
+            font-family: "Jacquard 12", system-ui;
+            border-radius: 4px;
+            margin: 0;
+            position: absolute;
+            top: 9%;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: all 0.2s ease-in-out;
+        }
 
+        #submitButton:hover {
+            color: rgb(115, 32, 32);
+            box-shadow: 0 5px 15px white;
         }
 
         /* STYLE FOR THE IMAGE */
         #displayedImage {
             display: none; /* This line is mandatory */
+            width: 485px;
+            height: 485px;
+            margin: 0;
+            position: absolute;
+            top: 25%;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgb(115, 32, 32);
+            box-shadow: 0 5px 15px white;
+ 
         }
     </style>
+
 </head>
+
 <body>
 
-    
     <!-- INPUT FIELD FOR 1 CHARACTER -->
-    <input type="text" id="charInput" maxlength="1">
+    <input type="text" id="charInput" maxlength="1" placeholder="~offer a letter~">
 
     <!-- BUTTON TO DISPLAY IMAGE -->
-    <button onclick="displayImage()" id="submitButton">Show Image</button>
+    <button onclick="displayImage()" id="submitButton">Revelation</button>
 
     <!-- IMAGE TO DISPLAY -->
     <img id="displayedImage" src="" alt="Displayed Image">
 
+    <!-- AUDIO OVER HOVER -->
+    <audio id="hoveraudio" src="Hallelujah-sound-effect.mp3" preload="auto"></audio>
 
     <!-- Image Display Script Below -->
     <script>
         // Array of images
-        // DIRECTIONS: UPDATE THE URLS WITH THE RELATIVE LINKS OF YOUR IMAGES
         const images = [
-            "https://via.placeholder.com/300/00FF00/FFFFFF?text=A", //A
-            "https://via.placeholder.com/300/00FF00/FFFFFF?text=B", //B
-            "https://via.placeholder.com/300/0000FF/FFFFFF?text=C", //C
-            "https://via.placeholder.com/300/FFFF00/000000?text=D", //D
-            "https://via.placeholder.com/300/FF00FF/FFFFFF?text=E", //E
-            "https://via.placeholder.com/300/FF00FF/FFFFFF?text=F", //F
-            "https://via.placeholder.com/300/FF00FF/FFFFFF?text=G", //G
-            "https://via.placeholder.com/300/FF00FF/FFFFFF?text=H", //H
-            "https://via.placeholder.com/300/FF00FF/FFFFFF?text=I", //I
-            "https://via.placeholder.com/300/FF00FF/FFFFFF?text=J", //J
-            "https://via.placeholder.com/300/FF00FF/FFFFFF?text=K", //K
-            "https://via.placeholder.com/300/FF00FF/FFFFFF?text=L", //L
-            "https://via.placeholder.com/300/FF00FF/FFFFFF?text=M", //M
-            "https://via.placeholder.com/300/FF00FF/FFFFFF?text=N", //N
-            "https://via.placeholder.com/300/FF00FF/FFFFFF?text=O", //O
-            "https://via.placeholder.com/300/FF00FF/FFFFFF?text=P", //P
-            "https://via.placeholder.com/300/FF00FF/FFFFFF?text=Q", //Q
-            "https://via.placeholder.com/300/FF00FF/FFFFFF?text=R", //R
-            "https://via.placeholder.com/300/FF00FF/FFFFFF?text=S", //S
-            "https://via.placeholder.com/300/FF00FF/FFFFFF?text=T", //T
-            "https://via.placeholder.com/300/FF00FF/FFFFFF?text=U", //U
-            "https://via.placeholder.com/300/FF00FF/FFFFFF?text=V", //V
-            "https://via.placeholder.com/300/FF00FF/FFFFFF?text=W", //W
-            "https://via.placeholder.com/300/FF00FF/FFFFFF?text=X", //X
-            "https://via.placeholder.com/300/FF00FF/FFFFFF?text=Y", //Y
-            "https://via.placeholder.com/300/FF00FF/FFFFFF?text=Z"  //Z
+            "https://i.pinimg.com/736x/af/d0/34/afd03410729d2533235a559e54e1ce7a.jpg", //A
+            src="BAPTIZATION.png", //B
+            "https://i.pinimg.com/736x/43/bb/15/43bb1530cd3993a1a75ae775665c56b5.jpg", //C
+            "https://i.pinimg.com/736x/fb/80/57/fb8057a1e065abbca66f324d2f248410.jpg", //D
+            "https://i.pinimg.com/736x/ca/b0/d0/cab0d03f123b4923eba4c5d60a2f502c.jpg", //E
+            "https://i.pinimg.com/736x/ab/02/8d/ab028d1c87a0ee9eff116231586a1d28.jpg", //F
+            "https://i.pinimg.com/736x/5a/f3/37/5af3379591938c0e8e4aab3e4dc86962.jpg", //G
+            "https://i.pinimg.com/736x/bb/db/e2/bbdbe23d3350b5b839bc5f61a74e657f.jpg", //H
+            "https://i.pinimg.com/736x/ec/ab/68/ecab686491b71d440150eeb7fb99937c.jpg", //I
+            SRC="JUXTAPOSITION.PNG", //J
+            "https://i.pinimg.com/736x/bd/d1/e1/bdd1e1e2c8c12c754c416c21a586a9c3.jpg", //K
+            "https://i.pinimg.com/736x/e9/07/8e/e9078ec276546c18f06ec8139d6cab8a.jpg", //L
+            "https://i.pinimg.com/736x/9e/c0/10/9ec0109738f678f514bca03193c67575.jpg", //M
+            "https://i.pinimg.com/736x/b1/70/08/b17008295eafa3f023492f417127977d.jpg", //N
+            "https://i.pinimg.com/736x/e6/f5/73/e6f573322baae7c890c135f25e0ce7ba.jpg", //O
+            "https://i.pinimg.com/736x/1a/e5/32/1ae5325a10405982a8257eae98fed9ba.jpg", //P
+            "https://i.pinimg.com/736x/bf/0d/8c/bf0d8ce495fadb68ca3b987018d2491b.jpg", //Q
+            "https://i.pinimg.com/736x/77/a9/da/77a9da101e4915c5201641a7b1ead0a7.jpg", //R
+            "https://preview.redd.it/coaxed-into-bird-v0-4rx6hdho2dce1.jpeg?width=750&format=pjpg&auto=webp&s=3d994379a64668ff5f81b43836078cd1b0358ab4", //S
+            "https://i.pinimg.com/736x/23/f7/13/23f713b9205f3248023490b27340ab70.jpg", //T
+            "https://i.pinimg.com/736x/65/ad/cc/65adccd79c34a950b3b4f66480021e05.jpg", //U
+            "https://i.pinimg.com/736x/1c/7f/76/1c7f761725cf3344f7e5b8d75bffe863.jpg", //V
+            "https://i.pinimg.com/736x/a4/3b/24/a43b243bfbca5eeacc064ebafb684ec8.jpg", //W
+            "https://preview.redd.it/coaxed-into-bird-v0-trjddy6bncce1.jpeg?width=1080&crop=smart&auto=webp&s=8430ce676abbfe88f98f826e49c00254b4c5b48c", //X
+            "", //Y
+            "https://preview.redd.it/coaxed-into-bird-v0-j3w3xnunbdce1.jpeg?width=640&crop=smart&auto=webp&s=17e2dd4ae4406325f82d2e9c34bbe44e94a92167"  //Z
         ];
 
         function displayImage() {
@@ -78,16 +140,23 @@
                 imgElement.src = images[index];
                 imgElement.style.display = "block";
             } else {
-                /* 
-                alert("Please enter a letter between A and Z.");
-                imgElement.style.display = "none";
-                */
-
-                // IF INVALID INPUT IS ENTERED, DISPLAY ALTERNATE IMAGE
-                imgElement.src = "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcmtkdnJhMXY4Njd1cXR3MTM3MW1nMzZ1NXNhNHlhOHA0MWF2dDUzdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/13dRJkj5wgKq9q/giphy.gif"
+                imgElement.src = "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcmtkdnJhMXY4Njd1cXR3MTM3MW1nMzZ1NXNhNHlhOHA0MWF2dDUzdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/13dRJkj5wgKq9q/giphy.gif";
                 imgElement.style.display = "block";
             }
         }
+
+        // Adding hover event for audio playback
+        const submitButton = document.getElementById('submitButton');
+        const hoverAudio = document.getElementById('hoveraudio');
+
+        submitButton.addEventListener('mouseover', () => {
+            hoverAudio.play();
+        });
+
+        submitButton.addEventListener('mouseout', () => {
+            hoverAudio.pause(); // Optional: Pause audio when mouse leaves
+            hoverAudio.currentTime = 0; // Optional: Reset to the beginning
+        });
     </script>
 
 </body>
